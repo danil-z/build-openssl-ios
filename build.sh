@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-curl -O https://www.openssl.org/source/openssl-1.1.1b.tar.gz
-tar xf openssl-1.1.1b.tar.gz
-cd openssl-1.1.1b
+OPENSSL_VERSION=${1:-openssl-1.1.1e}
+
+curl -O https://www.openssl.org/source/$OPENSSL_VERSION.tar.gz
+tar xf $OPENSSL_VERSION.tar.gz
+cd $OPENSSL_VERSION
+export DIST_DIR=${OPENSSL_VERSION}-dist
 ../build_openssl_dist.sh

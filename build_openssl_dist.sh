@@ -2,7 +2,8 @@
 
 set -x
 
-TMP_DIR=../build_openssl
+SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+TMP_DIR="$SCRIPTPATH/build_openssl"
 CROSS_TOP_SIM="`xcode-select --print-path`/Platforms/iPhoneSimulator.platform/Developer"
 CROSS_SDK_SIM="iPhoneSimulator.sdk"
 
@@ -42,7 +43,7 @@ function pack_for ()
 
 patch Configurations/10-main.conf < ../patch-conf.patch
 
-build_for ios64sim-cross x86_64 SIM || exit 2
+build_for ios64sim-cross x86_64 SIM || exit 3
 build_for ios-cross armv7s IOS || exit 4
 build_for ios64-cross arm64 IOS || exit 5
 
